@@ -7,7 +7,7 @@ $ROUTE_ID = "ee806618-2d0b-4d8c-8ddc-cf66a2029784";
 $USERNAME = "demo";
 $PASSWORD = "demo";
 
-$recipient = "61417188345";
+$recipient = "61000000000";
 $bulksms = new BulkSMS();
 
 // Login
