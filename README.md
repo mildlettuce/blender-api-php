@@ -14,6 +14,19 @@ $bulksms->login($USERNAME, $PASSWORD);
 $response = $bulksms->singleRecipient("originator", "61400000000", "Test SMS", $ROUTE_ID, "my-reference");
 ```
 
+
+### Get Route ID (see Routing.php)
+```php
+require_once("bulksms/BulkSMS.php");
+# Create client instance
+$bulksms = new BulkSMS();
+# Login to gateway
+$bulksms->login($USERNAME, $PASSWORD);
+# Get route id
+$ROUTE_ID = $bulksms->getRouteIdByCountry("Australia");
+```
+
+
 ### Send same message to multiple recipients (see Demo.php)
 ```php
 require_once("bulksms/BulkSMS.php");
@@ -29,10 +42,12 @@ $batch->setOriginator("test");
 $batch->setRouteId($ROUTE_ID);
 # Set message body (for all recipients)
 $batch->setBody("Batch unicode message with 漢語");
-# Add recipients
+
+## Recipients ##
 $batch->addMSISDN("61000000001");
 $batch->addMSISDN("61000000002");
 $batch->addMSISDN("61000000003");
+
 # Send message
 $responseXml = $bulksms->sendBatch($batch);
 ```

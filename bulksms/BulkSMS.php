@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . "/BatchMessageMultiBody.php");
 require_once(dirname(__FILE__) . "/BatchMessageSingleBody.php");
+require_once(dirname(__FILE__) . "/UserRoutePricing.php");
 
 class BulkSMS {
     CONST MSG_SINGLE = "single";
@@ -11,6 +12,14 @@ class BulkSMS {
     private static $HTTP_TIMEOUT = 15;
     private $session = "";
 
+    private static $routePricing = null;
+
+    /**
+     * Login to bulk system, get reusable session
+     *
+     * @param $username
+     * @param $password
+     */
     public function login($username, $password) {
         $url = BulkSMS::$url . "login/" . urldecode($username) . "/" . urlencode($password);
         $xml = $this->getRequest($url);
@@ -19,6 +28,65 @@ class BulkSMS {
         $this->checkResponse($doc);
 
         $this->session = BulkSMS::xpathValue($doc, "/xaresponse/session");
+    }
+
+    /**
+     * Get all routes/pricing
+     * @return array of UserRoutePricing objects
+     */
+    public function getRoutePricing() {
+        if(BulkSMS::$routePricing == null) {
+            $pricings = array();
+            $url = BulkSMS::$url . $this->session . "/entity/user.UserRoutePricing/SMS/visible";
+            $xml = $this->getRequest($url);
+            $doc = new DOMDocument();
+            $doc->loadXML($xml);
+
+            $xpath = new DOMXPath($doc);
+            $query = "/xaresponse/entitylist/userroutepricing";
+            $nodes = $xpath->query($query);
+
+            foreach($nodes as $node) {
+                $urp = new UserRoutePricing($node);
+                $pricings[] = $urp;
+            }
+
+            BulkSMS::$routePricing = $pricings;
+        }
+
+        return BulkSMS::$routePricing;
+    }
+
+    /**
+     * Get (first) Route pricing info by country name
+     * @param $countryName
+     * @return UserRoutePricing Object
+     * @throws Exception if the country is not found
+     */
+    public function getRoutePricingByCountry($countryName) {
+        $pricings = $this->getRoutePricing();
+
+        foreach($pricings as $urp) {
+           if($urp->getCountryName() == $countryName)
+               return $urp;
+        }
+        throw new Exception("Unable to find route id for {$countryName}, please contact your reseller for additional coverage");
+    }
+
+    /**
+     * Get (first) Route ID by country name
+     * @param $countryName
+     * @return Route ID (string)
+     * @throws Exception if the country is not found
+     */
+    public function getRouteIdByCountry($countryName) {
+        $pricings = BulkSMS::getRoutePricing();
+
+        foreach($pricings as $urp) {
+            if($urp->getCountryName() == $countryName)
+                return $urp->getUserRouteId();
+        }
+        throw new Exception("Unable to find route id for {$countryName}, please contact your reseller for additional coverage");
     }
 
     public function getRequest($url) {
@@ -122,6 +190,11 @@ class BulkSMS {
         return !mb_check_encoding($string, 'ASCII') && mb_check_encoding($string, 'UTF-8');
     }
 
+    /**
+     * Send message batch
+     * @param $batch object of type BatchMessageSingleBody or BatchMessageMultiBody
+     * @return XML string
+     */
     public function sendBatch($batch) {
         $dom = new DOMDocument('1.0', "UTF-8");
         $node = $dom->importNode($batch->toXml(), true);

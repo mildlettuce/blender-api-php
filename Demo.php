@@ -3,15 +3,18 @@
 require_once(dirname(__FILE__) . "/bulksms/BulkSMS.php");
 
 // Defaults
-$ROUTE_ID = "ee806618-2d0b-4d8c-8ddc-cf66a2029784";
 $USERNAME = "demo";
 $PASSWORD = "demo";
 
 $recipient = "61000000000";
 $bulksms = new BulkSMS();
 
+
 // Login
 $bulksms->login($USERNAME, $PASSWORD);
+
+# Get Route ID
+$ROUTE_ID = $bulksms->getRouteIdByCountry("Australia");
 
 // EXAMPLE 1 - Send to single recipient
 # Uncomment to run
