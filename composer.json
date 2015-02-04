@@ -1,5 +1,5 @@
 {
-    "name": "mildlettuce/blender-bulk-sms-api",
+    "name": "mildlettuce/blender-php-api",
     "description": "Blender Bulk SMS Platform - Send SMS via PHP",
     "license": "MIT",
     "authors": [
