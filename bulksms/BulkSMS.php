@@ -1,4 +1,8 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
+use \DOMXPath;
+use \Exception;
 
 require_once(dirname(__FILE__) . "/BatchMessageMultiBody.php");
 require_once(dirname(__FILE__) . "/BatchMessageSingleBody.php");

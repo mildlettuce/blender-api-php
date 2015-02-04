@@ -16,8 +16,7 @@ $xml = "<deliverymessage>
 </deliverymessage>";
 */
 
-
-$incomingMessage = new DeliveryMessage($xml);
+$incomingMessage = new Blender\Client\DeliveryMessage($xml);
 //$incomingMessage->fromXml($xml);
 
 echo "Message Received:\n";

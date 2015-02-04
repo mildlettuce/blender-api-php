@@ -1,4 +1,7 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
+
 require_once(dirname(__FILE__) . "/BatchMessage.php");
 require_once(dirname(__FILE__) . "/BatchRecipientMultiBody.php");
 

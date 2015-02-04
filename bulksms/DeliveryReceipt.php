@@ -1,4 +1,6 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
 
 /**
  * Created by IntelliJ IDEA.

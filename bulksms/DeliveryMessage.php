@@ -1,4 +1,6 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
 
 class DeliveryMessage {
     private $created;

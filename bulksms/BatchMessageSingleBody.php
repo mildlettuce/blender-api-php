@@ -1,8 +1,10 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
+
 require_once(dirname(__FILE__) . "/BatchMessage.php");
 require_once(dirname(__FILE__) . "/BatchRecipientSingleBody.php");
 
-//@XmlRootElement(name = $"batchsingle")
 class BatchMessageSingleBody extends BatchMessage {
 	
 	// Whether to filter duplicates

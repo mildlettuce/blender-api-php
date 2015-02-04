@@ -1,6 +1,7 @@
 <?php
+namespace Blender\Client;
+use \DOMDocument;
 
-//@XmlRootElement(name = $"message")
 class BatchRecipientMultiBody  {
 	private $originator;
 	private $recipient;

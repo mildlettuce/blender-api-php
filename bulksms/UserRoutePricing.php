@@ -1,4 +1,5 @@
 <?php
+namespace Blender\Client;
 
 class UserRoutePricing {
     private static $props = null;

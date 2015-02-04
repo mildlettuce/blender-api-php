@@ -1,5 +1,6 @@
 <?php
-
+namespace Blender\Client;
+use \DOMDocument;
 
 class BatchMessage  {
 

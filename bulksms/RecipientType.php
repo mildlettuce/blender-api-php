@@ -1,4 +1,5 @@
 <?php
+namespace Blender\Client;
 
 abstract class RecipientType {
 	CONST CONTACT = "CONTACT";

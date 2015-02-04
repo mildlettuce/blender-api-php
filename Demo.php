@@ -1,13 +1,15 @@
 <?php
 
+//use Blender\Client;
 require_once(dirname(__FILE__) . "/bulksms/BulkSMS.php");
+
 
 // Defaults
 $USERNAME = "demo";
 $PASSWORD = "demo";
 
 $recipient = "61000000000";
-$bulksms = new BulkSMS();
+$bulksms = new Blender\Client\BulkSMS();
 
 
 // Login
@@ -23,7 +25,7 @@ $ROUTE_ID = $bulksms->getRouteIdByCountry("Australia");
 # ----------------------------------------------------------------------------------------------------------------
 
 // EXAMPLE 2 - Send same message to batch
-$batch = new BatchMessageSingleBody();
+$batch = new Blender\Client\BatchMessageSingleBody();
 $batch->setOriginator("test");
 $batch->setRouteId($ROUTE_ID);
 $batch->setBody("Batch single <message> in 漢語");
@@ -52,7 +54,7 @@ $batch->addMSISDN($recipient);
 
 // EXAMPLE 3 - Send batch of different messages to different recipients
 
-$batch = new BatchMessageMultiBody();
+$batch = new Blender\Client\BatchMessageMultiBody();
 // Set defaults
 $batch->setOriginator("test");
 $batch->setRouteId($ROUTE_ID);

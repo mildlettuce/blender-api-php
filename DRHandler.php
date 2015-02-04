@@ -15,7 +15,7 @@ $xml = "<deliveryreceipt>
 </deliveryreceipt>";
 */
 
-$receipt = new DeliveryReceipt($xml);
+$receipt = new Blender\Client\DeliveryReceipt($xml);
 
 echo "Receipt Received:\n";
 echo "Message Id:\t" . $receipt->getDeliveryMessageId() . "\n";

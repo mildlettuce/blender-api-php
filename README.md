@@ -7,7 +7,7 @@ Blender Bulk SMS Platform - Send SMS via PHP
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
-$bulksms = new BulkSMS();
+$bulksms = new Blender\Client\BulkSMS();
 # Login to gateway
 $bulksms->login($USERNAME, $PASSWORD);
 # Send to a single recipient
@@ -19,7 +19,7 @@ $response = $bulksms->singleRecipient("originator", "61400000000", "Test SMS", $
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
-$bulksms = new BulkSMS();
+$bulksms = new Blender\Client\BulkSMS();
 # Login to gateway
 $bulksms->login($USERNAME, $PASSWORD);
 # Get route id
@@ -31,11 +31,11 @@ $ROUTE_ID = $bulksms->getRouteIdByCountry("Australia");
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
-$bulksms = new BulkSMS();
+$bulksms = new Blender\Client\BulkSMS();
 # Login to gateway
 $bulksms->login($USERNAME, $PASSWORD);
 # Create batch
-$batch = new BatchMessageSingleBody();
+$batch = new Blender\Client\BatchMessageSingleBody();
 # Set originator
 $batch->setOriginator("test");
 # Set route id
@@ -56,11 +56,11 @@ $responseXml = $bulksms->sendBatch($batch);
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
-$bulksms = new BulkSMS();
+$bulksms = new Blender\Client\BulkSMS();
 # Login to gateway
 $bulksms->login($USERNAME, $PASSWORD);
 # Create batch
-$batch = new BatchMessageMultiBody();
+$batch = new Blender\Client\BatchMessageMultiBody();
 # Set default originator (you can override per recipient)
 $batch->setOriginator("test");
 # Set default route id (you can override per recipient)
@@ -90,7 +90,7 @@ $responseXml = $bulksms->sendBatch($batch);
 ```php
 require_once(dirname(__FILE__) . "/bulksms/DeliveryMessage.php");
 $xml = $_POST['xml'];
-$incomingMessage = new DeliveryMessage($xml);
+$incomingMessage = new Blender\Client\DeliveryMessage($xml);
 $originator = $incomingMessage->getOriginator();
 $body = $incomingMessage->getBody();
 ```
@@ -99,7 +99,7 @@ $body = $incomingMessage->getBody();
 ```php
 require_once(dirname(__FILE__) . "/bulksms/DeliveryReceipt.php");
 $xml = $_POST['xml'];
-$receipt = new DeliveryReceipt($xml);
+$receipt = new Blender\Client\DeliveryReceipt($xml);
 $myref = $receipt->getClientReference();
 $status = $receipt->getStatus();
 ```
