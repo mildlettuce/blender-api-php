@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/BulkSMS.php");
+require_once(dirname(__FILE__) . "/bulksms/BulkSMS.php");
 
 // Defaults
 $ROUTE_ID = "ee806618-2d0b-4d8c-8ddc-cf66a2029784";

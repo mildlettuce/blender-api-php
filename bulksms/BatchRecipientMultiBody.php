@@ -68,6 +68,7 @@ class BatchRecipientMultiBody  {
     public function toXml($name = "recipient") {
         $dom = new DOMDocument('1.0');
         $recipient = $dom->createElement($name);
+
         foreach($this as $key => $value) {
             if($value == null)
                 continue;
