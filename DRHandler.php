@@ -15,8 +15,7 @@ $xml = "<deliveryreceipt>
 </deliveryreceipt>";
 */
 
-$receipt = new DeliveryReceipt();
-$receipt->fromXml($xml);
+$receipt = new DeliveryReceipt($xml);
 
 echo "Receipt Received:\n";
 echo "Message Id:\t" . $receipt->getDeliveryMessageId() . "\n";

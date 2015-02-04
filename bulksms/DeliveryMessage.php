@@ -9,6 +9,12 @@ class DeliveryMessage {
     private $originator;
     private $recipient;
 
+    function __construct($xml = null) {
+        if($xml != null)
+            $this->fromXml($xml);
+    }
+
+
     /**
      * @return mixed
      */

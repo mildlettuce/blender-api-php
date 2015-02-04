@@ -14,6 +14,11 @@ class DeliveryReceipt {
     private $part;
     private $parts;
 
+    function __construct($xml = null) {
+        if($xml != null)
+            $this->fromXml($xml);
+    }
+
     /**
      * @return mixed
      */

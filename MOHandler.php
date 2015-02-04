@@ -17,8 +17,8 @@ $xml = "<deliverymessage>
 */
 
 
-$incomingMessage = new DeliveryMessage();
-$incomingMessage->fromXml($xml);
+$incomingMessage = new DeliveryMessage($xml);
+//$incomingMessage->fromXml($xml);
 
 echo "Message Received:\n";
 echo "From:\t" . $incomingMessage->getOriginator() . "\n";
