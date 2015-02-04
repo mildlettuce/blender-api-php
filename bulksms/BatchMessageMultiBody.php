@@ -4,68 +4,68 @@ require_once(dirname(__FILE__) . "/BatchRecipientMultiBody.php");
 
 class BatchMessageMultiBody extends BatchMessage {
 
-	private $recipients = array();
+    private $recipients = array();
 
-	public function BatchMessageMultiBody() {
+    public function BatchMessageMultiBody() {
 
-	}
+    }
 
-	public function getRecipients() {
-		return $this->recipients;
-	}
+    public function getRecipients() {
+        return $this->recipients;
+    }
 
-	public function setRecipients($recipients) {
-		$this->recipients = $recipients;
+    public function setRecipients($recipients) {
+        $this->recipients = $recipients;
 
-	}
+    }
 
-	public function addRecipient($originator, $recipient, $body, $reference = null, $routeId = null) {
+    public function addRecipient4($recipient, $body, $reference, $routeId) {
+        $this->addRecipient(null, $recipient, $body, $reference, $routeId);
+    }
 
-		if (($originator == null) && ($this->getOriginator() == null))
-			throw new Exception("You must set the Originator on either the Batch or the Recipient");
+    public function addRecipient($originator, $recipient, $body, $reference = null, $routeId = null) {
 
-		if ($recipient == null)
-			throw new Exception("You must set the Recipient number");
+        if (($originator == null) && ($this->getOriginator() == null))
+            throw new Exception("You must set the Originator on either the Batch or the Recipient");
 
-		if (($body == null) && ($this->getBody() == null))
-			throw new Exception("You must set the Body on either the Batch or the Recipient");
+        if ($recipient == null)
+            throw new Exception("You must set the Recipient number");
 
-		if (($routeId == null) && ($this->getRouteId() == null))
-			throw new Exception("You must set the Route ID on either the Batch or the Recipient");
+        if (($body == null) && ($this->getBody() == null))
+            throw new Exception("You must set the Body on either the Batch or the Recipient");
 
-		$rec = new BatchRecipientMultiBody($originator, $recipient, $body, $reference, $routeId);
+        if (($routeId == null) && ($this->getRouteId() == null))
+            throw new Exception("You must set the Route ID on either the Batch or the Recipient");
 
-        $this->recipients[] = $rec;		
-	}
+        $rec = new BatchRecipientMultiBody($originator, $recipient, $body, $reference, $routeId);
 
-	public function addRecipient4($recipient, $body, $reference, $routeId) {
-		$this->addRecipient(null, $recipient, $body, $reference, $routeId);
-	}
+        $this->recipients[] = $rec;
+    }
 
-	public function addRecipient3($recipient, $body, $reference) {
+    public function addRecipient3($recipient, $body, $reference) {
         $this->addRecipient(null, $recipient, $body, $reference, null);
-	}
+    }
 
-	public function addRecipien2($recipient, $body) {
+    public function addRecipien2($recipient, $body) {
         $this->addRecipient(null, $recipient, $body, null, null);
-	}
+    }
 
-	public function addRecipient1($recipient) {
+    public function addRecipient1($recipient) {
         $this->addRecipient(null, $recipient, null, null, null);
-	}
+    }
 
     public function toXml() {
         $dom = new DOMDocument('1.0');
         $batch = parent::toXml('batchmulti');
         $msg = $dom->importNode($batch, true);
 
-        foreach($this as $key => $value) {
-            if($value == null)
+        foreach ($this as $key => $value) {
+            if ($value == null)
                 continue;
 
-            if($key == "recipients") {
+            if ($key == "recipients") {
                 $recipients = $dom->createElement('recipients');
-                foreach($this->recipients as $r) {
+                foreach ($this->recipients as $r) {
                     $node = $dom->importNode($r->toXml(), true);
                     $recipients->appendChild($node);
                 }

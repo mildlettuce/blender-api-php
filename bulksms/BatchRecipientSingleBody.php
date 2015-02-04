@@ -1,22 +1,22 @@
 <?php
 require_once(dirname(__FILE__) . "/RecipientType.php");
 
-class BatchRecipientSingleBody  {
-	private $type;
-	private $recipient;
+class BatchRecipientSingleBody {
+    private $type;
+    private $recipient;
 
-	
-	public function BatchRecipientSingleBody($type, $recipient) {
-		$this->setType($type);
-		$this->recipient = $recipient;
-	}
 
-	public function getType() {
-		return $this->type;
-	}
+    public function BatchRecipientSingleBody($type, $recipient) {
+        $this->setType($type);
+        $this->recipient = $recipient;
+    }
 
-	public function setType($type) {
-        switch($type) {
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setType($type) {
+        switch ($type) {
             case RecipientType::CONTACT:
             case RecipientType::MAILINGLIST:
             case RecipientType::MSISDN:
@@ -25,21 +25,21 @@ class BatchRecipientSingleBody  {
             default:
                 throw new Exception("Invalid recipient type: {$type}");
         }
-	}
+    }
 
-	public function getRecipient() {
-		return $this->recipient;
-	}
+    public function getRecipient() {
+        return $this->recipient;
+    }
 
-	public function setRecipient($recipient) {
-		$this->recipient = $recipient;
-	}
+    public function setRecipient($recipient) {
+        $this->recipient = $recipient;
+    }
 
     public function toXml() {
         $dom = new DOMDocument('1.0');
         $recipient = $dom->createElement('recipient');
-        foreach($this as $key => $value) {
-            if($value == null)
+        foreach ($this as $key => $value) {
+            if ($value == null)
                 continue;
 
             $item = $dom->createElement($key, $value);
