@@ -46,7 +46,7 @@ class BatchMessageMultiBody extends BatchMessage {
         $this->addRecipient(null, $recipient, $body, $reference, null);
     }
 
-    public function addRecipien2($recipient, $body) {
+    public function addRecipient2($recipient, $body) {
         $this->addRecipient(null, $recipient, $body, null, null);
     }
 

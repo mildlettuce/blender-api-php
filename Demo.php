@@ -59,8 +59,8 @@ $batch->setRouteId($ROUTE_ID);
 $batch->setBody("Batch single message");
 
 $batch->addRecipient1($recipient);
-$batch->addRecipien2($recipient, "different message");
-$batch->addRecipien2($recipient, "different message with unicode טוקיו 東京(Tokyo)");
+$batch->addRecipient2($recipient, "different message");
+$batch->addRecipient2($recipient, "different message with unicode טוקיו 東京(Tokyo)");
 $longtext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor turpis at nunc rutrum, eget sodales turpis molestie. Nullam mattis sit amet urna et tristique. Vivamus nec justo et dui sed. 200+ chars";
 $batch->addRecipient("orignew", $recipient, $longtext);
 # Uncomment to run

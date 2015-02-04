@@ -72,9 +72,9 @@ $batch->setBody("Batch unicode message with 漢語");
 # Add recipient
 $batch->addRecipient1($recipient);
 # Add recipient, override message
-$batch->addRecipien2($recipient, "different message");
+$batch->addRecipient2($recipient, "different message");
 # Add recipient with unicode message
-$batch->addRecipien2($recipient, "different message with unicode טוקיו 東京(Tokyo)");
+$batch->addRecipient2($recipient, "different message with unicode טוקיו 東京(Tokyo)");
 # Add new message with different originator, recipient and long body
 $longtext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor turpis at nunc rutrum, eget sodales turpis molestie. Nullam mattis sit amet urna et tristique. Vivamus nec justo et dui sed. 200+ chars";
 $batch->addRecipient("orignew", $recipient, $longtext);
