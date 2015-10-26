@@ -3,7 +3,7 @@ Blender Bulk SMS Platform - Send SMS via PHP
 
 
 
-### Send SMS to single recipient (see Demo.php)
+### Send SMS to single recipient (see demo/Demo.php)
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
@@ -15,7 +15,20 @@ $response = $bulksms->singleRecipient("originator", "61400000000", "Test SMS", $
 ```
 
 
-### Get Route ID (see Routing.php)
+### Get Route ID by Recipient/MSISDN (see demo/AutoRouting.php)
+```php
+require_once("bulksms/BulkSMS.php");
+require_once("bulksms/AutoRoute.php");
+# Create client instance
+$bulksms = new Blender\Client\BulkSMS();
+# Login to gateway
+$bulksms->login($USERNAME, $PASSWORD);
+# Initialize Autoroute
+$autoRoute = new AutoRoute($bulksms);
+# Get Route ID
+$ROUTE_ID = $autoRoute->getRouteId($recipient);
+
+### Get Route ID by Country (see demo/Routing.php)
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
@@ -27,7 +40,7 @@ $ROUTE_ID = $bulksms->getRouteIdByCountry("Australia");
 ```
 
 
-### Send same message to multiple recipients (see Demo.php)
+### Send same message to multiple recipients (see demo/Demo.php)
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
@@ -52,7 +65,7 @@ $batch->addMSISDN("61000000003");
 $responseXml = $bulksms->sendBatch($batch);
 ```
 
-### Send multiple messages to multiple recipients (see Demo.php)
+### Send multiple messages to multiple recipients (see demo/Demo.php)
 ```php
 require_once("bulksms/BulkSMS.php");
 # Create client instance
@@ -85,7 +98,7 @@ $responseXml = $bulksms->sendBatch($batch);
 
 
 
-### Receive SMS (see MOHandler.php)
+### Receive SMS (see demo/MOHandler.php)
 
 ```php
 require_once(dirname(__FILE__) . "/bulksms/DeliveryMessage.php");
@@ -94,7 +107,7 @@ $incomingMessage = new Blender\Client\DeliveryMessage($xml);
 $originator = $incomingMessage->getOriginator();
 $body = $incomingMessage->getBody();
 ```
-### Receive Receipt (see DRHandler.php)
+### Receive Receipt (see demo/DRHandler.php)
 
 ```php
 require_once(dirname(__FILE__) . "/bulksms/DeliveryReceipt.php");

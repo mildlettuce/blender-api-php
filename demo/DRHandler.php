@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . "/bulksms/DeliveryReceipt.php");
+require_once(dirname(__FILE__) . "/../bulksms/DeliveryReceipt.php");
 
 $xml = $_POST['xml'];
 
