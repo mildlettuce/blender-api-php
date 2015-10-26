@@ -1,7 +1,7 @@
 <?php
 
-require_once(dirname(__FILE__) . "/bulksms/BulkSMS.php");
-require_once(dirname(__FILE__) . "/bulksms/AutoRoute.php");
+require_once(dirname(__FILE__) . "/../bulksms/BulkSMS.php");
+require_once(dirname(__FILE__) . "/../bulksms/AutoRoute.php");
 
 $bulksms = new Blender\Client\BulkSMS();
 

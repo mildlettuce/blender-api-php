@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/bulksms/BulkSMS.php");
+require_once(dirname(__FILE__) . "/../bulksms/BulkSMS.php");
 
 $bulksms = new BulkSMS();
 
