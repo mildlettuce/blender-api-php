@@ -15,7 +15,8 @@ $response = $bulksms->singleRecipient("originator", "61400000000", "Test SMS", $
 ```
 
 
-### Get Route ID by Recipient/MSISDN (see demo/AutoRouting.php)
+### Get Route ID by Recipient/MSISDN
+# see demo/AutoRouting.php
 ```php
 require_once("bulksms/BulkSMS.php");
 require_once("bulksms/AutoRoute.php");
