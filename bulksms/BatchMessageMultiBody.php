@@ -13,6 +13,10 @@ class BatchMessageMultiBody extends BatchMessage {
 
     }
 
+    public function clearRecipients() {
+        $this->recipients = array();
+    }
+
     public function getRecipients() {
         return $this->recipients;
     }

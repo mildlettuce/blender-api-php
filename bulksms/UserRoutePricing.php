@@ -8,6 +8,7 @@ class UserRoutePricing {
     private $countryName;
     private $description;
     private $userRouteId;
+    private $countryId;
 
     function __construct($node) {
         $this->fromXmlNode($node);
@@ -73,5 +74,8 @@ class UserRoutePricing {
         return $this->userRouteId;
     }
 
+    public function getCountryId() {
+        return $this->countryId;
+    }
 
 }

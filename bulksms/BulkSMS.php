@@ -11,7 +11,7 @@ require_once(dirname(__FILE__) . "/UserRoutePricing.php");
 class BulkSMS {
     CONST MSG_SINGLE = "single";
     CONST MSG_BATCH = "batch";
-    private static $url = "https://apps.rawmobility.com/bulksms/xmlapi/";
+    private static $url = "http://apps.rawmobility.com/bulksms/xmlapi/";
     private static $USER_AGENT = "BlenderClient/1.0";
     private static $HTTP_TIMEOUT = 15;
     private $session = "";
