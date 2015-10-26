@@ -27,6 +27,8 @@ $bulksms->login($USERNAME, $PASSWORD);
 $autoRoute = new AutoRoute($bulksms);
 # Get Route ID
 $ROUTE_ID = $autoRoute->getRouteId($recipient);
+```
+
 
 ### Get Route ID by Country (see demo/Routing.php)
 ```php
