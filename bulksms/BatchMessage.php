@@ -1,6 +1,7 @@
 <?php
 namespace Blender\Client;
 use \DOMDocument;
+use \Exception;
 
 class BatchMessage  {
 
@@ -24,6 +25,12 @@ class BatchMessage  {
 
 	// Message spread, in HOURS
 	private $messageSpread = 0;
+
+	// Schedule time
+	private $deliverySchedule = null;
+
+	// Schedule timezone
+	private $deliveryTimeZone = null;
 
 	public function getRouteId() {
 		return $this->routeId;
@@ -101,6 +108,15 @@ class BatchMessage  {
 
 	public function setMessageSpread($messageSpread) {
 		$this->messageSpread = $messageSpread;
+	}
+
+	public function setSchedule($time, $timezone) {
+		$pattern = '/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/';
+		if(!preg_match($pattern, $time)) {
+			throw new Exception("Invalid time format, must be yyyy-mm-ddThh:mm:ss | Example - 2016-06-18T15:01:00");
+		}
+		$this->deliverySchedule = $time;
+		$this->deliveryTimeZone = $timezone;
 	}
 
 

@@ -101,6 +101,17 @@ $responseXml = $bulksms->sendBatch($batch);
 ```
 see [demo/Demo.php](demo/Demo.php)
 
+### Schedule message
+```php
+require_once("bulksms/BulkSMS.php");
+$bulksms = new Blender\Client\BulkSMS();
+$bulksms->login($USERNAME, $PASSWORD);
+$batch = new Blender\Client\BatchMessageMultiBody();
+
+# Schedule message with date/time/timezone
+$batch->setSchedule("2017-01-01T15:24:04", "Australia/Melbourne");
+```
+see [demo/Demo.php](demo/Demo.php)
 
 ### Receive SMS
 
