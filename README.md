@@ -122,7 +122,7 @@ $incomingMessage = new Blender\Client\DeliveryMessage($xml);
 $originator = $incomingMessage->getOriginator();
 $body = $incomingMessage->getBody();
 ```
-see [demo/MOHandler.php](demo/MOHandler.php)
+see [demo/MOHandler.php](demo/MOHandler.php), and [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](list of timezones)
 
 ### Receive Receipt
 
