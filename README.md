@@ -109,9 +109,11 @@ $bulksms->login($USERNAME, $PASSWORD);
 $batch = new Blender\Client\BatchMessageMultiBody();
 
 # Schedule message with date/time/timezone
+// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 $batch->setSchedule("2017-01-01T15:24:04", "Australia/Melbourne");
+
 ```
-see [demo/Demo.php](demo/Demo.php)
+see [demo/Demo.php](demo/Demo.php), and [list of timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 ### Receive SMS
 
@@ -122,7 +124,8 @@ $incomingMessage = new Blender\Client\DeliveryMessage($xml);
 $originator = $incomingMessage->getOriginator();
 $body = $incomingMessage->getBody();
 ```
-see [demo/MOHandler.php](demo/MOHandler.php), and [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](list of timezones)
+see [demo/MOHandler.php](demo/MOHandler.php)
+
 
 ### Receive Receipt
 
