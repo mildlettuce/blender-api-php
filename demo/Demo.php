@@ -72,3 +72,22 @@ $batch->addRecipient("orignew", $recipient, $longtext);
 //$responseXml =  $bulksms->sendBatch($batch);
 echo "Response: {$responseXml}\n";
 
+# ----------------------------------------------------------------------------------------------------------------
+
+// EXAMPLE 4 - Shorten URL
+
+$batch = new Blender\Client\BatchMessageMultiBody();
+// Set defaults
+$batch->setOriginator("test");
+$batch->setRouteId($ROUTE_ID);
+$batch->setBody("Batch single message");
+$batch->addRecipient1($recipient);
+
+// Enable short url
+$batch->setShortUrl(true);
+// -----------------------
+
+# Uncomment to run
+//$responseXml =  $bulksms->sendBatch($batch);
+echo "Response: {$responseXml}\n";
+
