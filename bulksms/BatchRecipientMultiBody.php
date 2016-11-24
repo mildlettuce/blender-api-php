@@ -73,19 +73,24 @@ class BatchRecipientMultiBody  {
 		$this->routeId = $routeId;
 	}
 
-    public function toXml($name = "recipient") {
-        $dom = new DOMDocument('1.0');
-        $recipient = $dom->createElement($name);
+	public function toXml($name = "recipient") {
+		$_body = $this->body;
+		$this->body = str_replace("&", "&amp;", $this->body);
 
-        foreach($this as $key => $value) {
-            if($value == null)
-                continue;
+		$dom = new DOMDocument('1.0');
+		$recipient = $dom->createElement($name);
 
-            $item = $dom->createElement($key, $value);
-            $recipient->appendChild($item);
-        }
-        return $recipient;
-    }
+		foreach($this as $key => $value) {
+			if($value == null)
+				continue;
+
+			$item = $dom->createElement($key, $value);
+			$recipient->appendChild($item);
+		}
+
+		$this->body = $_body;
+		return $recipient;
+	}
 
 }
 /*

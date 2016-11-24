@@ -138,6 +138,9 @@ class BatchMessage {
 
 
     public function toXml($name) {
+        $_body = $this->body;
+        $this->body = str_replace("&", "&amp;", $this->body);
+
         $dom = new DOMDocument('1.0');
         $elem = $dom->createElement($name);
         foreach ($this as $key => $value) {
@@ -147,6 +150,8 @@ class BatchMessage {
             $item = $dom->createElement($key, $value);
             $elem->appendChild($item);
         }
+
+        $this->body = $_body;
         return $elem;
     }
 }
